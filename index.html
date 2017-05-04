@@ -6,14 +6,22 @@
 </head>
 <body>
 	<div class="contenedor">
-		<select class="pokemon1">
-			<option></option>
+		<select id="pokemon1">
+			<option value="0">Selecciona tu Pokemon</option>
+			<option value="pikachu">Pikachu</option>
+			<option value="charmander">Charmander</option>
 		</select>
-		<select class="pokemon2">
-			<option></option>
+		<select id="pokemon2">
+			<option value="0">Selecciona el Pokemon rival</option>
+			<option value="pikachu">Pikachu</option>
+			<option value="charmander">Charmander</option>
 		</select>
 	</div>
-	<button>Pelear</button>
+
+	<button onclick="pelear()">Pelear</button>
+
+	<p id="pokePelea"></p>
+
 	<script src="assets/js/main.js"></script>
 </body>
 </html>
