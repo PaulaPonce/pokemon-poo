@@ -5,23 +5,34 @@
 	<title>Pokemon</title>
 </head>
 <body>
-	<div class="contenedor">
-		<select id="pokemon1">
-			<option value="0">Selecciona tu Pokemon</option>
-			<option value="pikachu">Pikachu</option>
-			<option value="charmander">Charmander</option>
-		</select>
-		<select id="pokemon2">
-			<option value="0">Selecciona el Pokemon rival</option>
-			<option value="pikachu">Pikachu</option>
-			<option value="charmander">Charmander</option>
-		</select>
-	</div>
+	<center>
+		<img src="assets/img/pokemon-logo.jpg" alt="poke logo" align="middle" width="480" height="218">
+		<h1>Batalla Pokemon</h1>
 
-	<button onclick="pelear()">Pelear</button>
+			<div class="contenedor">
+			<select id="pokemon1" required>
+				<option value="0">Selecciona tu Pokemon</option>
+				<option value="Pikachu">Pikachu</option>
+				<option value="Charmander">Charmander</option>
+				<option value="Bulbasaur">Bulbasaur</option>
+				<option value="Squirtle">Squirtle</option>
+			</select> VS
 
-	<p id="pokePelea"></p>
+			<select id="pokemon2" required>
+				<option value="0">Selecciona el Pokemon rival</option>
+				<option value="Pikachu">Pikachu</option>
+				<option value="Charmander">Charmander</option>
+				<option value="Bulbasaur">Bulbasaur</option>
+				<option value="Squirtle">Squirtle</option>
+			</select>
 
+			<button style="border: none; background: #3a7999; color: #f2f2f2; font-weight: bold; font-size: 125%;" onclick="pelear()">Pelear</button>
+			</div>
+		
+		<p id="pokePelea"></p>
+		<img src="assets/img/pokemon-0.jpg" alt="pokemon150" width="1330">
+	</center>
+	
 	<script src="assets/js/main.js"></script>
 </body>
 </html>
