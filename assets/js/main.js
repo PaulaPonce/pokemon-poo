@@ -19,8 +19,8 @@ function Pokemon(nombre, color, poderDeAtaque){
 	}
 }
 
-const Pikachu = new Pokemon("Pikachu", "amarillo", 100);
-const Charmander = new Pokemon("Charmander", "rojo", 20);
+//const Pikachu = new Pokemon("Pikachu", "amarillo", 100);
+//const Charmander = new Pokemon("Charmander", "rojo", 20);
 
 /*
 Pikachu.atacar(Charmander);
@@ -28,21 +28,21 @@ document.write(Charmander.vida);
 */
 
 function pelear(){
-	var select1 = document.getElementById('pokemon1').value;
-	var select2 = document.getElementById('pokemon2').value;
+	var select1 = document.getElementById('pokemon1').value.bold();
+	var select2 = document.getElementById('pokemon2').value.bold();
 
 	if(select1 == select2){
 		alert("No puedes hacer pelear al mismo Pokemon");
 		return;
 	}else{
-		var poderDeAtaque1 = prompt("Ingresa el poder de ataque del primer Pokemon");
-		var poderDeAtaque2 = prompt("Ingresa el poder de ataque del segundo Pokemon");
+		//var poderDeAtaque1 = prompt("Ingresa el poder de ataque del primer Pokemon");
+		//var poderDeAtaque2 = prompt("Ingresa el poder de ataque del segundo Pokemon");
 
-		var poke1 = new Pokemon(select1, "amarillo", poderDeAtaque1);
-		var poke2 = new Pokemon(select2, "rojo", poderDeAtaque2);
+		var poke1 = new Pokemon(select1, "amarillo", 100);
+		var poke2 = new Pokemon(select2, "rojo", 20);
 
-		var ataque = poke2.vida - poderDeAtaque1;
-		document.getElementById('pokePelea').innerHTML = select1 + " atacó a " + select2 + " y " + select2 + " tiene una vida de: " + ataque;
+		poke1.atacar(poke2);
+		document.getElementById('pokePelea').innerHTML = select1 + " atacó a " + select2 + " y " + select2 + " tiene una vida de: " + poke2.vida;
 	}	
 }
 
