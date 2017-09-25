@@ -2,38 +2,68 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Pokemon</title>
+	<title>Pokémon | Simulador de Batallas</title>
+	<meta name="description" content="Simulador simple de una batalla pokémon">
+	<meta name="keywords" content="HTML, CSS, JavaScript, OOP, Pokémon, Battle">
+	<meta name="author" content="Paula Ponce">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<!-- Favicon -->
+	<link rel="icon"
+      type="image/ico"
+      href="assets/img/favicon.ico">
+	<!-- FontAwesome Icons -->
+	<script src="https://use.fontawesome.com/b432f04897.js"></script>
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web|Wendy+One" rel="stylesheet">
+	<!-- Materialize Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<!-- main.css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
-<body>
-	<center>
-		<img src="assets/img/pokemon-logo.jpg" alt="poke logo" align="middle" width="480" height="218">
-		<h1>Batalla Pokemon</h1>
-
+<body style="background-color: #E5ECFB;">
+	<header>
 		
-			<div class="contenedor">
-			<select id="pokemon1" required>
-				<option value="0">Selecciona tu Pokemon</option>
-				<option value="Pikachu">Pikachu</option>
-				<option value="Charmander">Charmander</option>
-				<option value="Bulbasaur">Bulbasaur</option>
-				<option value="Squirtle">Squirtle</option>
-			</select> VS
+		<img src="assets/img/pokemon-logo.png" alt="poke logo" align="middle" width="480" height="218">
+		
+		<h1 class="text-center">Batalla Pokémon</h1>
+	</header>
 
-			<select id="pokemon2" required>
-				<option value="0">Selecciona el Pokemon rival</option>
-				<option value="Pikachu">Pikachu</option>
-				<option value="Charmander">Charmander</option>
-				<option value="Bulbasaur">Bulbasaur</option>
-				<option value="Squirtle">Squirtle</option>
+	<section>
+		<div class="contenedor">
+			<label for="pokemon1">Pokémon 1</label>
+			<select name="pokemon1" id="pokemon1" required onchange="mostrarPokemonSeleccionado()">
+				<option value="0">Elige tu Pokémon</option>
 			</select>
-
+			<span>VS</span>
+			<label for="pokemon2">Pokémon 2</label>
+			<select name="pokemon2" id="pokemon2" required onchange="mostrarPokemonRival()">
+				<option value="0">Elige el Pokémon rival</option>
+			</select>
 			<button style="border: none; background: #3a7999; color: #f2f2f2; font-weight: bold; font-size: 125%;" onclick="pelear()">Pelear</button>
-			</div>
+		</div>
 		
-		<p id="pokePelea"></p>
-		<img src="assets/img/pokemon-0.jpg" alt="pokemon150" width="1330">
-	</center>
-	
+		<p id="pokeInfo1"></p>
+		<p id="pokeInfo2"></p>
+
+		<img src="assets/img/pokemon-0.png" alt="pokemon150" width="1330">
+	</section>
+
+	<aside>
+		<p id="pokePelea1"></p>
+		<p id="pokePelea2"></p>
+	</aside>
+
+	<footer>
+		<p><small>Desarrollado por <b>Paula Ponce</b></small></p>
+		<p><small>Todos los gifs animados han sido ripeados por www.pkparaiso.com</small></p>
+		<p><small>Pokémon pertenece a Nintendo/Creatures Inc./GAME FREAK Inc.</small></p>
+	</footer>
+
+	<!-- Materialize Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<!-- data.js -->
+	<script src="assets/js/data.js"></script>
+	<!-- main.js -->
 	<script src="assets/js/main.js"></script>
 </body>
 </html>

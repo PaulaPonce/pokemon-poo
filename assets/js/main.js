@@ -1,60 +1,108 @@
-function Pokemon(nombre, color, poderDeAtaque){
-	this.nombre = nombre;
-	this.color = color;
-	
-	this.nivelDeAmistad = 0;
-	this.vida = 100;
+var pokemon = []; //arreglo de pokémon
+
+//Pokémon Constructor
+function Pokemon (nombre, tipo, vida, poderDeAtaque) {
+	this.nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1);
+	this.tipo = tipo;
+	this.vida = vida;
 	this.poderDeAtaque = poderDeAtaque;
+	this.nivelDeAmistad = 70;
 
-	this.mostrarPokemon = function(){
-		return("Hola, soy: " + this.nombre + " y soy de color: " + this.color);
+	this.imagen = function(){
+		return "<img src='assets/gif/" + this.nombre + ".gif'>";
+	};
+
+	this.mostrarPokemon = function () {
+		return "Hola, soy: <b>" + this.nombre + "</b> y soy de tipo: <b>" + this.tipo + "</b>";
 	}
 
-	this.aumentaAmistad = function(valor){
-		this.nivelDeAmistad = this.nivelDeAmistad + valor;
+	this.aumentarAmistad = function (valor) {
+		this.nivelDeAmistad += valor; // = this.nivelDeAmistad + valor;
 	}
 
-	this.atacar = function(pokemon){
-		pokemon.vida = pokemon.vida - this.poderDeAtaque;
+	this.atacar = function (pokemon) {
+		pokemon.vida -= this.poderDeAtaque;
 	}
 }
 
-//const Pikachu = new Pokemon("Pikachu", "amarillo", 100);
-//const Charmander = new Pokemon("Charmander", "rojo", 20);
 
-/*
-Pikachu.atacar(Charmander);
-document.write(Charmander.vida);
-*/
+//función para crear pokémons y añadirlos en arreglo (data.js)
+listaDePokemon();
 
-function pelear(){
-	var select1 = document.getElementById('pokemon1').value.bold();
-	var select2 = document.getElementById('pokemon2').value.bold();
 
-	if(select1 == select2){
-		alert("No puedes hacer pelear al mismo Pokemon");
-		return;
-	}else{
-		//var poderDeAtaque1 = prompt("Ingresa el poder de ataque del primer Pokemon");
-		//var poderDeAtaque2 = prompt("Ingresa el poder de ataque del segundo Pokemon");
+//función para añadir a Select los pokémons creados
+function llenarSelect (idSelect, arrayPokemon) {
+	var select = document.getElementById(idSelect);
+	var optionAux, nodeAux;
 
-		var poke1 = new Pokemon(select1, "amarillo", 100);
-		var poke2 = new Pokemon(select2, "rojo", 20);
-
-		poke1.atacar(poke2);
-		document.getElementById('pokePelea').innerHTML = select1 + " atacó a " + select2 + " y " + select2 + " tiene una vida de: " + poke2.vida;
-	}	
+	arrayPokemon.forEach(function(element) {
+		optionAux = document.createElement("option");
+		nodeAux = document.createTextNode(element.nombre); //optionAux.innerHTML = element.nombre;
+		
+		optionAux.appendChild(nodeAux);
+		select.appendChild(optionAux);
+	}); 
 }
 
 
-/*
-var pokSelect = document.getElementByClassName('pokemon');
-var optionAux, nombreAux;
+var select1 = document.getElementById('pokemon1');
+var select2 = document.getElementById('pokemon2');
+var resultado1 = document.getElementById('pokePelea1');
+var resultado2 = document.getElementById('pokePelea2');
+var mostrarPoke1 = document.getElementById('pokeInfo1');
+var mostrarPoke2 = document.getElementById('pokeInfo2');
 
-function renderPok(poke){
-	var optionAux = document.createElement("option");
-	var nombreAux = document.createTextNode(poke.nombre);
-	optionAux.appendChild(nombretAux);
-	pokSelect.appendChild(optionAux);
+//función batalla pokémon
+function pelear() {
+	var pokemon1 = pokemon.filter(function(index) {
+		return index.nombre == select1.value;
+	})[0];
+
+	var pokemon2 = pokemon.filter(function(index) {
+		return index.nombre == select2.value;
+	})[0];
+
+	if (pokemon1 === pokemon2) {
+		alert("No puedes hacer pelear al mismo Pokémon.");
+	} else if (pokemon2.vida <= 0) {
+		alert(pokemon2.nombre + " no se puede atacar. \nEl pokémon ganador es " + pokemon1.nombre + ".");
+	} else if (pokemon1.vida <= 0){
+		alert(pokemon1.nombre + " está fuera de combate. \nEl pokémon ganador es " + pokemon2.nombre + ".")
+	}else {
+		pokemon1.atacar(pokemon2);
+		resultado1.innerHTML = "<b>" + pokemon1.nombre + "</b> atacó a <b>" + pokemon2.nombre + "</b><br>" + pokemon2.nombre + " tiene una vida de: <b>" + pokemon2.vida + "</b>";
+		
+		if (pokemon2.vida <=0 ) {
+			resultado2.innerHTML = pokemon2.nombre + " no puede atacar";
+		} else {
+			pokemon2.atacar(pokemon1);
+			resultado2.innerHTML = "<b>" + pokemon2.nombre + "</b> atacó a <b>" + pokemon1.nombre + "</b><br>" + pokemon1.nombre + " tiene una vida de: <b>" + pokemon1.vida + "</b>";	
+		}
+	}
 }
-*/
+
+
+//función que muestra información del pokémon seleccionado en Select 1
+function mostrarPokemonSeleccionado(){
+	var pokemon1 = pokemon.filter(function(index) {
+		return index.nombre == select1.value;
+	})[0];
+
+	console.log(select1);
+	console.log(pokemon1);
+	
+	mostrarPoke1.innerHTML = pokemon1.mostrarPokemon() + "<br>Vida: <b>" + pokemon1.vida + "</b><br>Poder de Ataque: <b>" + pokemon1.poderDeAtaque + "</b><br>" + pokemon1.imagen();
+}
+	
+
+//función que muestra información del pokémon seleccionado en Select 2
+function mostrarPokemonRival(){
+	var pokemon2 = pokemon.filter(function(index) {
+		return index.nombre == select2.value;
+	})[0];
+
+	console.log(select2);
+	console.log(pokemon2);
+
+	mostrarPoke2.innerHTML = "<b>" + pokemon2.nombre + "</b><br>Tipo: <b>" + pokemon2.tipo + "</b><br>Vida: <b>" + pokemon2.vida + "</b><br>Poder de Ataque: <b>" + pokemon2.poderDeAtaque + "</b><br>" + pokemon2.imagen();
+}
