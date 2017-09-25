@@ -52,6 +52,7 @@ var resultado2 = document.getElementById('pokePelea2');
 var mostrarPoke1 = document.getElementById('pokeInfo1');
 var mostrarPoke2 = document.getElementById('pokeInfo2');
 
+
 //función batalla pokémon
 function pelear() {
 	var pokemon1 = pokemon.filter(function(index) {
